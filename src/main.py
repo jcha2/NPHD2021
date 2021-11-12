@@ -31,12 +31,13 @@ def seed_everything(seed_value):
 # Inheritance "Dataset" Class
 class histo_cancer_dataset(Dataset):
 	def __init__(self, data_dir):
+		sub_dirs = ["negative", "positive"]
 		labels = ["0", "1"]
 		self.labels = []
 		self.filenames = []
 		# os.path.join allows only string arguments
 		for label in labels:
-			path2data = os.path.join(data_dir, label)
+			path2data = os.path.join(data_dir, sub_dirs[int(label)])
 			filenames = os.listdir(path2data)
 			self.filenames = self.filenames+[os.path.join(path2data, f) for f in filenames]
 			self.labels = self.labels + [int(label)] * len(filenames)
@@ -64,7 +65,7 @@ if __name__ == '__main__':
 
 	# Load dataset
 	## It must be modified to take arguments from a user
-	histo_dataset = histo_cancer_dataset("/home/bis/211105_CSH_MPL/CoAtNet/kTest/")
+	histo_dataset = histo_cancer_dataset("../images")
 	print(len(histo_dataset))
 	
 	# Divide train and validation dataset
