@@ -30,8 +30,8 @@ def seed_everything(seed_value):
 # What is argument for the class
 # Inheritance "Dataset" Class
 class histo_cancer_dataset(Dataset):
-	def __init__(self, data_dir):
-		sub_dirs = ["negative", "positive"]
+	def __init__(self, data_dir, suffix):
+		sub_dirs = ["negative"+suffix, "positive"+suffix]
 		labels = ["0", "1"]
 		self.labels = []
 		self.filenames = []
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
 	# Load dataset
 	## It must be modified to take arguments from a user
-	histo_dataset = histo_cancer_dataset("../images")
+	histo_dataset = histo_cancer_dataset("../images", "")
 	print(len(histo_dataset))
 	
 	# Divide train and validation dataset
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 	loss = torch.nn.CrossEntropyLoss()	
 
 	# Update strategy
-	optimizer = torch.optim.Adam(net.parameters(), lr = 0.0000001)
+	optimizer = torch.optim.Adam(net.parameters(), lr = 0.0001)
 
 	# Notation
 	## epoch: the number of times an algorithm visits all dataset
@@ -124,4 +124,14 @@ if __name__ == '__main__':
 			optimizer.zero_grad()
 			iter_ = iter_ + 1
 			print(f'iter: {iter_}')
+	# Test
+	histo_test = histo_cancer_dataset("../images", "_test")
+	test_set = DataLoader(histo_test, batch_size=100, shuffle=False)
+	for x, y in test_set:
+		y_pred = net(x)
+		_, y_pred_tags = torch.max(y_pred, dim=1)
+		correct_pred = (y_pred_tags == y).float()
+		acc = correct_pred.sum() / len(correct_pred)
+
+		print(f'{acc:.3f}')
 
