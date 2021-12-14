@@ -14,6 +14,6 @@ notion: https://www.notion.so/National-Pathology-Health-Datathon-2021-NPHD-2021-
 - benchmarked to CoAtNet<br/>
 https://arxiv.org/abs/2106.04803<br/>
 - due to small dataset, we used CCTT : C as MBConv Block, T as Attention Block
-
 <br/>
+
 ![coatnet](https://user-images.githubusercontent.com/31056110/145987575-d3aa2c94-ddec-4886-8aa2-f2c5e0728bb7.png)
