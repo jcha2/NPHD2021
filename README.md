@@ -16,4 +16,4 @@ https://arxiv.org/abs/2106.04803<br/>
 - due to small dataset, we used CCTT : C as MBConv Block, T as Attention Block
 
 <br/>
-![image](https://user-images.githubusercontent.com/31056110/145986671-a6389ce6-d725-460d-abb2-c055b4f00450.png)
+![image](https://user-images.githubusercontent.com/31056110/145987512-1a6ab6d1-3600-4e58-a602-b5abccfb581a.png)
